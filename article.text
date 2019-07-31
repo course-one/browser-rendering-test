@@ -1,0 +1,57 @@
+---
+
+How the browser renders a web page? - DOM, CSSOM and Render Tree
+In this article, we will deep dive into DOM and CSSOM to understand how the browser renders a webpage. Brower blocks some rendering of a webpage until certain resources are loaded first while other resources are loaded asynchronously.
+
+(source: pexels.com)
+Whenever you are developing a website, there are certain things which are very essential for good user experience. Some of the common problems a website may encounter could be slow loading of the resources, waiting for unnecessary content to display initial render, a flash of unstyled content (FOUC), etc. To avoid such problems, we need to understand the lifecycle of how a browser renders a typical webpage.
+First, we need to understand what DOM is. When a browser sends a request to the server to fetch an HTML document, the server returns an HTML page in binary stream format which is basically a text file with a response header Content-Type which has value text/html; charset=UTF-8. Here text/html is a MIME Type which tells the browser that it is an HTML document and charset=UTF-8 tells the browser that it is encoded in UTF-8 character encoding. Using this information, the browser can convert the binary format into a readable text file. This has shown below in the screenshot. 
+
+
+If this header is missing, the browser would not understand how to process the file and it will render in plain test format. But if everything is OK, after this conversion, the browser can start reading the HTML document. A typical HTML document could look like this.
+<html>
+    <head>
+        <title>Rendering Test</title>
+        <link rel='stylesheet' href='./style.css'>
+    </head>
+    <body>
+        <div class='container'>
+         <h1>Hello World!</h1>
+         <p>This is a sample paragraph.</p>
+        </div>
+        <script src="./main.js"></script>
+    </body>
+</html>
+In the above document, our webpage is dependent on style.css to provide styles to HTML elements and main.js to perform some JavaScript operations. With some neat CSS styles, our above webpage will look like this.
+https://codesandbox.io/s/browser-rendering-test-sample-basic-enqo2
+
+But the question stands, how the browser renders this beautiful looking webpage from simple HTML file which contains some text? For that, we need to understand what is DOM, CSSOM and Render Tree?
+Document Object Model (DOM)
+When the browser reads HTML code, whenever it encounters an HTML element like html, body, div etc., it creates a JavaScript object called as Node. Eventually, all HTML elements will be converted to JavaScript objects. Since every different HTML element has different properties, the Node object will be created from different classes (constructor functions).
+For example, the Node object for the div element is created from HTMLDivElement which inherits Node class. For our earlier HTML document, we can visualize this using the below tests.
+
+
+The browser comes with built-in classes like HTMLDivElement, HTMLScriptElement, Node etc. 
+After the browser has created Nodes from the HTML document, it has to create a tree-like structure of these node objects. Since our HTML element will be nested inside each other, browser needs to replicate that but using Node objects it has previously created. This will help the browser efficiently render and manage the webpage through its lifecycle. 
+(DOM Tree)A DOM tree for our earlier HTML document looks like above. A DOM tree starts from the topmost element which is html element and branches out as per the occurrence and nesting of HTML elements in the document. Whenever an HTML element is found, it creates a DOM node (Node) object from its respective class (constructor function).
+A DOM node doesn't always have to be an HTML element. When the browser creates a DOM tree, it also saved things like comments, attributes, text as separate nodes in the tree. But for the simplicity, we will just consider DOM nodes for HTML elements AKA DOM element. Here is the list of all DOM node types.
+You can visualize the DOM tree in Google Chrome DevTools Console as shown below. This will show you the hierarchy of DOM elements (a high-level view of DOM tree) with properties of each DOM element.
+(Chrome DevTools Console)JavaScript doesn't understand what DOM is, it is not part of the JavaScript specifications. DOM is a high-level Web API provided by the browser to efficiently render a webpage and expose it publically for the developer to dynamically manipulate DOM elements for various purposes.
+Using DOM API, developers can add or remove HTML elements, change its appearance or bind event listeners. Using DOM API, HTML elements can be created or cloned in memory and maniuplated without affecting the rendered DOM tree. This gives developers the ability to construct highly dynamic web page with rich user experience. 
+CSS Object Model (CSSOM)
+
+
+Render Tree
+
+
+
+
+---
+
+Browser engine
+The job of creating DOM Tree, CSSOM Tree and handle rendering logic is done using a piece of software called as Browser Engine also called as Rendering Engine or Layout Engine. Here is a list of different browser engine used by some of the top web browsers. These Browser engines contain all the necessary elements and logic to render a web page from HTML file to actual pixels on the screen.
+
+
+---
+
+Rendering sequence

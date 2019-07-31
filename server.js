@@ -4,12 +4,12 @@ const path = require( 'path' );
 // create react app
 const app = express();
 
-// return `index.html` page
-app.get( '/', ( _req, res ) => {
-    res.sendFile( path.resolve( __dirname, 'index.html' ) );
+// return file immediately
+app.get( '/:file', ( req, res ) => {
+    res.sendFile( path.resolve( __dirname, req.params.file ) );
 } );
 
-// return .css and .js file with a delay
+// return a file with provided delay
 app.get( '/:delay/:file', ( req, res ) => {
     setTimeout( () => {
         res.sendFile( path.resolve( __dirname, req.params.file ) );
