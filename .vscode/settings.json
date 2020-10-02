@@ -1,0 +1,39 @@
+{
+    // integrated terminal settings
+    "terminal.integrated.shell.osx": "/bin/bash",
+    "terminal.integrated.shellArgs.osx": [
+        "--init-file", ".vscode/init.sh"
+    ],
+
+    // VSCode UI settings
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": false,
+    "window.title": "${activeEditorShort}",
+    "editor.foldingHighlight": false,
+    "editor.renderLineHighlight": "none",
+    "editor.occurrencesHighlight": false,
+    "editor.selectionHighlight": false,
+    "editor.matchBrackets": "never",
+    "editor.minimap.enabled": false,
+
+    // disable git
+    "git.enabled": false,
+    "gitlens.mode.active": "zen",
+    "gitlens.codeLens.enabled": false,
+
+    // custom CSS plugin config
+    // https://marketplace.visualstudio.com/items?itemName=iocave.customize-ui
+    "customizeUI.stylesheet": {
+        ".tabs-and-actions-container .editor-actions": "display: none !important;",
+        ".split-view-container .split-view-view:nth-child(2) .part.panel.bottom .composite.title .title-actions": "display: none !important",
+        ".monaco-workbench .part.titlebar > .window-title": "display: none !important",
+        ".monaco-workbench .part.titlebar": "background-color: rgb(37, 37, 38) !important",
+        ".decorationsOverviewRuler": "opacity: 0 !important",
+        ".monaco-scrollable-element>.visible": "opacity: 0 !important",
+        ".monaco-workbench .monaco-scrollable-element > .scrollbar > .slider": "opacity: 0 !important",
+        ".editor-container": "margin-top: 10px !important;",
+        ".monaco-editor .scroll-decoration": "box-shadow: unset !important;",
+        ".monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab": "background-color: transparent !important;",
+        ".monaco-workbench .part.panel.bottom .composite.title": "margin-bottom: 10px !important;",
+    }
+}

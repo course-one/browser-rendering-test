@@ -1,0 +1,48 @@
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>No Script DCL</title>
+
+    <!-- start `DOMContentLoaded` timer -->
+    <script>
+        console.time( 'DOMContentLoaded' );
+    </script>
+
+    <!-- capture `DOMContentLoaded` event -->
+    <script>
+        document.addEventListener( 'DOMContentLoaded', function()  {
+            console.timeEnd( 'DOMContentLoaded' );
+            var firstElem = document.getElementById( 'first' );
+            var styles = window.getComputedStyle( firstElem );
+            console.log( 'styles.color ->', styles.color );
+        } );
+    </script>
+
+    <!-- render-blocking css -->
+    <link rel="stylesheet" href="http://localhost:8088/1000/css/h1-red.css" />
+</head>
+
+<body>
+    <h1 id="first">🍏 apple: 1</h1>
+    <h1>🍏 apple: 2</h1>
+    <h1>🍏 apple: 3</h1>
+
+    <!-- render-blocking css -->
+    <link rel="stylesheet" href="http://localhost:8088/3000/css/h1-green.css" />
+
+    <h1>🍏 apple: 4</h1>
+    <h1>🍏 apple: 5</h1>
+    <h1>🍏 apple: 6</h1>
+
+    <!-- render-blocking css -->
+    <link rel="stylesheet" href="http://localhost:8088/6000/css/h1-blue.css" />
+
+    <h1>🍏 apple: 7</h1>
+    <h1>🍏 apple: 8</h1>
+    <h1>🍏 apple: 9</h1>
+    <h1>🍏 apple: 10</h1>
+</body>
+
+</html>

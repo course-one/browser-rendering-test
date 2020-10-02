@@ -22,4 +22,4 @@ app.get( '/:delay/:dir/:file', ( req, res ) => {
 } );
 
 // serve express application
-app.listen( 8088, () => console.log( 'http://localhost:8088/index.html' ) );
+app.listen( 8088, () => console.log( 'Server started on port: 8088' ) );
