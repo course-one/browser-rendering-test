@@ -4,6 +4,6 @@
   "description": "Sample code base to test how a browser renders a webpage.",
   "private": true,
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.18.2"
   }
 }
